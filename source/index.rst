@@ -31,4 +31,9 @@ Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
    :numbered:
 
    chapter1-about
+   chapter2-oe
+   chapter3-debian
+   chapter4-firmware
+   chapter5-kenel
+   chapter6-user
    references
