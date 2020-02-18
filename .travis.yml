@@ -41,6 +41,7 @@ script:
 
 before_deploy:
   - cp ./build/latex/ledge.pdf build/ledge-$TRAVIS_TAG.pdf
+  - cp ./build/latex/ledge.pdf build/singlehtml/ledge-latest.pdf
 
 deploy:
   - provider: releases
