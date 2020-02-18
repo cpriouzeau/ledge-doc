@@ -7,13 +7,13 @@ OpenEmbedded
 This chapter discusses specific OpenEmbedded LEDGE build and run.
 
 Supported platfroms
-============
+===================
 - armv7/ledge-multi-armv7 (qemu, ti-am572x, stm32mp157c-dk2);
 - armv8/ledge-multi-armv7 (qemu, synquacer)
 - x86-64 (qemu)
 
 Build steps
-===============
+===========
 
 Download sources:
 -----------------
@@ -22,9 +22,9 @@ repo init --no-clone-bundle --depth=1 --no-tags -u https://github.com/Linaro/led
 repo sync
 
 Setup environment and run build:
--------------------------------
+--------------------------------
 armv7 family:
-------------
+-------------
 
 MACHINE=ledge-multi-armv7 DISTRO=rpb source ./setup-environment build-rpb
 
@@ -58,7 +58,7 @@ armv7 (qemu_arm)
 ----------------
 
 armv8 (qemu_arm64)
------------------
+------------------
 
 OVMF:
 
