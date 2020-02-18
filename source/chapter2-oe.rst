@@ -35,6 +35,117 @@ armv7 family:
 
 Image files will apper under: armhf-glibc/deploy/images directory.
 
+Generated output will be:
+
+.. code-block:: bash
+
+	├── ledge-qemuarm
+	│   ├── arm-trusted-firmware
+	│   │   ├── bl1.bin
+	│   │   ├── bl1.elf
+	│   │   ├── bl2.bin
+	│   │   └── bl2.elf
+	│   ├── bl1.bin -> arm-trusted-firmware/bl1.bin
+	│   ├── bl2.bin -> arm-trusted-firmware/bl2.bin
+	│   ├── bl32.bin -> optee/tee-header_v2.bin
+	│   ├── bl32_extra1.bin -> optee/tee-pager_v2.bin
+	│   ├── bl32_extra2.bin -> optee/tee-pageable_v2.bin
+	│   ├── bl33.bin -> u-boot-ledge-qemuarm.bin
+	│   ├── dtb
+	│   ├── kernel-devicetrees.tgz
+	│   ├── ledge-gateway.env
+	│   ├── ledge-gateway-ledge-kernel-uefi.wks
+	│   ├── ledge-gateway-ledge-qemuarm-20200218104425.bootfs.vfat
+	│   ├── ledge-gateway-ledge-qemuarm-20200218104425.bootfs.vfat.gz
+	│   ├── ledge-gateway-ledge-qemuarm-20200218104425.qemuboot.conf
+	│   ├── ledge-gateway-ledge-qemuarm-20200218104425.rootfs.manifest
+	│   ├── ledge-gateway-ledge-qemuarm-20200218104425.rootfs.wic
+	│   ├── ledge-gateway-ledge-qemuarm-20200218104425.testdata.json
+	│   ├── ledge-gateway-ledge-qemuarm.bootfs.vfat -> ledge-gateway-ledge-qemuarm-20200218104425.bootfs.vfat
+	│   ├── ledge-gateway-ledge-qemuarm.bootfs.vfat.gz
+	│   ├── ledge-gateway-ledge-qemuarm.manifest -> ledge-gateway-ledge-qemuarm-20200218104425.rootfs.manifest
+	│   ├── ledge-gateway-ledge-qemuarm.qemuboot.conf -> ledge-gateway-ledge-qemuarm-20200218104425.qemuboot.conf
+	│   ├── ledge-gateway-ledge-qemuarm.testdata.json -> ledge-gateway-ledge-qemuarm-20200218104425.testdata.json
+	│   ├── ledge-gateway-ledge-qemuarm.wic -> ledge-gateway-ledge-qemuarm-20200218104425.rootfs.wic
+	│   ├── ledge-initramfs-ledge-qemuarm.cpio.gz -> ledge-initramfs.rootfs.cpio.gz
+	│   ├── ledge-initramfs-ledge-qemuarm.manifest -> ledge-initramfs.rootfs.manifest
+	│   ├── ledge-initramfs-ledge-qemuarm.qemuboot.conf -> ledge-initramfs.qemuboot.conf
+	│   ├── ledge-initramfs-ledge-qemuarm.testdata.json -> ledge-initramfs.testdata.json
+	│   ├── ledge-initramfs.qemuboot.conf
+	│   ├── ledge-initramfs.rootfs.cpio.gz
+	│   ├── ledge-initramfs.rootfs.manifest
+	│   ├── ledge-initramfs.testdata.json
+	│   ├── ledge-iot.env
+	│   ├── ledge-iot-ledge-kernel-uefi.wks
+	│   ├── ledge-iot-ledge-qemuarm-20200218104425.bootfs.vfat
+	│   ├── ledge-iot-ledge-qemuarm-20200218104425.bootfs.vfat.gz
+	│   ├── ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf
+	│   ├── ledge-iot-ledge-qemuarm-20200218104425.rootfs.manifest
+	│   ├── ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic
+	│   ├── ledge-iot-ledge-qemuarm-20200218104425.testdata.json
+	│   ├── ledge-iot-ledge-qemuarm.bootfs.vfat -> ledge-iot-ledge-qemuarm-20200218104425.bootfs.vfat
+	│   ├── ledge-iot-ledge-qemuarm.bootfs.vfat.gz
+	│   ├── ledge-iot-ledge-qemuarm.manifest -> ledge-iot-ledge-qemuarm-20200218104425.rootfs.manifest
+	│   ├── ledge-iot-ledge-qemuarm.qemuboot.conf -> ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf
+	│   ├── ledge-iot-ledge-qemuarm.testdata.json -> ledge-iot-ledge-qemuarm-20200218104425.testdata.json
+	│   ├── ledge-iot-ledge-qemuarm.wic -> ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic
+	│   ├── ledge-kernel-uefi-certs.ext4.img
+	│   ├── ledge-qemuarm.dtb
+	│   ├── modules-ledge-qemuarm.tgz -> modules--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+	│   ├── modules--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+	│   ├── modules-stripped-ledge-qemuarm-for-debian.tgz
+	│   ├── modules-stripped-ledge-qemuarm.tgz -> modules-stripped--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+	│   ├── modules-stripped--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+	│   ├── optee
+	│   │   ├── tee.bin
+	│   │   ├── tee-header_v2.bin
+	│   │   ├── tee-pageable.bin
+	│   │   ├── tee-pageable_v2.bin
+	│   │   ├── tee-pager.bin
+	│   │   └── tee-pager_v2.bin
+	│   ├── u-boot-basic-1.0-r0.bin
+	│   ├── u-boot.bin -> u-boot-basic-1.0-r0.bin
+	│   ├── u-boot.bin-basic -> u-boot-basic-1.0-r0.bin
+	│   ├── u-boot-ledge-qemuarm.bin -> u-boot-basic-1.0-r0.bin
+	│   ├── u-boot-ledge-qemuarm.bin-basic -> u-boot-basic-1.0-r0.bin
+	│   ├── zImage -> zImage--mainline-5.3-r0-ledge-qemuarm-20200218104425.bin
+	│   ├── zImage-for-debian
+	│   ├── zImage-ledge-qemuarm.bin -> zImage--mainline-5.3-r0-ledge-qemuarm-20200218104425.bin
+	│   └── zImage--mainline-5.3-r0-ledge-qemuarm-20200218104425.bin
+	├── ledge-stm32mp157c-dk2
+	│   ├── arm-trusted-firmware
+	│   │   ├── bl2.bin
+	│   │   ├── bl2.elf
+	│   │   └── tf-a-stm32mp157c-dk2.stm32
+	│   ├── optee
+	│   │   ├── tee.bin
+	│   │   ├── tee-header_v2.bin
+	│   │   ├── tee-header_v2.stm32
+	│   │   ├── tee-pageable.bin
+	│   │   ├── tee-pageable_v2.bin
+	│   │   ├── tee-pageable_v2.stm32
+	│   │   ├── tee-pager.bin
+	│   │   ├── tee-pager_v2.bin
+	│   │   └── tee-pager_v2.stm32
+	│   ├── spl
+	│   │   └── u-boot-spl.stm32-basic
+	│   ├── u-boot-basic.img
+	│   └── u-boot-trusted.stm32
+	└── ledge-ti-am572x
+	    ├── MLO -> MLO-ledge-ti-am572x-1.0-r0
+	    ├── MLO-ledge-ti-am572x -> MLO-ledge-ti-am572x-1.0-r0
+	    ├── MLO-ledge-ti-am572x-1.0-r0
+	    ├── optee
+	    │   ├── tee.bin
+	    │   ├── tee-header_v2.bin
+	    │   ├── tee-pageable.bin
+	    │   ├── tee-pageable_v2.bin
+	    │   ├── tee-pager.bin
+	    │   └── tee-pager_v2.bin
+	    ├── u-boot.img -> u-boot-ledge-ti-am572x-1.0-r0.img
+	    ├── u-boot-ledge-ti-am572x-1.0-r0.img
+	    └── u-boot-ledge-ti-am572x.img -> u-boot-ledge-ti-am572x-1.0-r0.img
+
 armv8 family:
 -------------
 
