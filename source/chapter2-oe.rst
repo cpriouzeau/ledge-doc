@@ -170,8 +170,127 @@ Install and boot procedure
 
 OVMF firmware for different architectures can be downloaded from here: https://storage.kernelci.org/images/uefi/111bbcf87621/
 
+OE maintains script called 'runqemu'. This script automatically added to the path after source ./setup-environment is done. This script can be used to run
+qemu virtual machine with all required parameters to boot from image and run networking. Configuration file ledge-iot-ledge-qemuarm-*.qemuboot.conf is 
+generated during the build process.
+
+Usage example usage:
+
+.. code-block:: bash
+
+   runqemu ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf wic serial
+
+Example boot log:
+
+.. code-block:: bash
+
+	maxim.uvarov@hackbox2:~/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm$ runqemu ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf wic serial
+	runqemu - INFO - Running MACHINE=ledge-qemuarm bitbake -e...
+	runqemu - INFO - Overriding conf file setting of STAGING_DIR_NATIVE to /home/maxim.uvarov/build-test-update/build-rpb-mc/tmp-rpb-glibc/work/armv7at2hf-vfp-linaro-linux-gnueabi/defaultpkgname/1.0-r0/recipe-sysroot-native from Bitbake environment
+	runqemu - INFO - Continuing with the following parameters:
+
+	MACHINE: [ledge-qemuarm]
+	FSTYPE: [wic]
+	ROOTFS: [/home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm/ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic]
+	CONFFILE: [/home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm/ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf]
+
+	runqemu - INFO - Setting up tap interface under sudo
+	[sudo] password for maxim.uvarov: 
+	runqemu - INFO - Network configuration: 192.168.7.2::192.168.7.1:255.255.255.0
+	runqemu - INFO - Using block virtio drive
+	runqemu - INFO - Interrupt character is '^]'
+	runqemu - INFO - Running sudo /home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin/qemu-system-arm -device virtio-net-pci,netdev=net0,mac=52:54:00:12:34:02 -netdev tap,id=net0,ifname=tap0,script=no,downscript=no -drive id=disk0,file=/home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm/ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic,if=none,format=raw -device virtio-blk-device,drive=disk0 -no-reboot -show-cursor -device virtio-rng-pci -monitor null -nographic -d unimp -semihosting-config enable,target=native -bios bl1.bin -dtb ledge-qemuarm.dtb -drive id=disk1,file=ledge-kernel-uefi-certs.ext4.img,if=none,format=raw -device virtio-blk-device,drive=disk1  -machine virt,secure=on -cpu cortex-a15 -m 1024  -device virtio-serial-device -chardev null,id=virtcon -device virtconsole,chardev=virtcon 
+
+	NOTICE:  Booting Trusted Firmware
+	NOTICE:  BL1: v2.2(debug):v2.2-78-g76f25eb52
+	NOTICE:  BL1: Built : 08:42:37, Feb 10 2020
+	INFO:    BL1: RAM 0xe04e000 - 0xe056000
+	WARNING: BL1: cortex_a15: CPU workaround for 816470 was missing!
+	INFO:    BL1: cortex_a15: CPU workaround for cve_2017_5715 was applied
+	INFO:    BL1: Loading BL2
+	WARNING: Firmware Image Package header check failed.
+	INFO:    Loading image id=1 at address 0xe01b000
+	INFO:    Image id=1 loaded: 0xe01b000 - 0xe0201c0
+	NOTICE:  BL1: Booting BL2
+	INFO:    Entry point address = 0xe01b000
+	INFO:    SPSR = 0x1d3
+	NOTICE:  BL2: v2.2(debug):v2.2-78-g76f25eb52
+	NOTICE:  BL2: Built : 08:42:37, Feb 10 2020
+	INFO:    BL2: Doing platform setup
+	INFO:    BL2: Loading image id 4
+	WARNING: Firmware Image Package header check failed.
+	INFO:    Loading image id=4 at address 0xe100000
+	INFO:    Image id=4 loaded: 0xe100000 - 0xe10001c
+	INFO:    OPTEE ep=0xe100000
+	INFO:    OPTEE header info:
+	INFO:          magic=0x4554504f
+	INFO:          version=0x2
+	INFO:          arch=0x0
+	INFO:          flags=0x0
+	INFO:          nb_images=0x1
+	INFO:    BL2: Loading image id 21
+	WARNING: Firmware Image Package header check failed.
+	INFO:    Loading image id=21 at address 0xe100000
+	INFO:    Image id=21 loaded: 0xe100000 - 0xe12e1f8
+	INFO:    BL2: Skip loading image id 22
+	INFO:    BL2: Loading image id 5
+	WARNING: Firmware Image Package header check failed.
+	INFO:    Loading image id=5 at address 0x60000000
+	INFO:    Image id=5 loaded: 0x60000000 - 0x600976bc
+	NOTICE:  BL1: Booting BL32
+	INFO:    Entry point address = 0xe100000
+	INFO:    SPSR = 0x1d3
+
+
+	U-Boot 2020.01 (Feb 10 2020 - 08:42:58 +0000)
+
+	DRAM:  1 GiB
+	WARNING: Caches not enabled
+	Flash: 64 MiB
+	In:    pl011@9000000
+	Out:   pl011@9000000
+	Err:   pl011@9000000
+	Net:   No ethernet found.
+	Hit any key to stop autoboot:  0 
+	ERROR: reserving fdt memory region failed (addr=7fe00000 size=200000)
+	1313 bytes read in 2 ms (640.6 KiB/s)
+	Scanning disk virtio-blk#30...
+	Scanning disk virtio-blk#31...
+	** Unrecognized filesystem type **
+	Found 4 disks
+
+	Warning: virtio-net#32 using MAC address from ROM
+	ERROR: reserving fdt memory region failed (addr=7fe00000 size=200000)
+	2299 bytes read in 1 ms (2.2 MiB/s)
+	ERROR: reserving fdt memory region failed (addr=7fe00000 size=200000)
+	2299 bytes read in 1 ms (2.2 MiB/s)
+	Booting: kernel
+	EFI stub: Booting Linux Kernel...
+	EFI stub: UEFI Secure Boot is enabled.
+	EFI stub: Using DTB from configuration table
+	EFI stub: Exiting boot services and installing virtual address map...
+	[    0.000000] Booting Linux on physical CPU 0x0
+	[    0.000000] Linux version 5.3.6 (oe-user@oe-host) (gcc version 8.2.1 20180802 (Linaro GCC 8.2-2018.08~dev)) #1 SMP Tue Feb 18 10:49:14 UTC 2020
+	[    0.000000] CPU: ARMv7 Processor [412fc0f1] revision 1 (ARMv7), cr=30c5387d
+	[    0.000000] CPU: div instructions available: patching division code
+	[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, PIPT instruction cache
+	[    0.000000] OF: fdt: Machine model: linux,dummy-virt
+	[    0.000000] OF: fdt: Ignoring memory block 0xe00000
+
+
 armv7 (qemu_arm)
 ----------------
+
+.. code-block:: bash
+
+   qemu-system-arm  \
+       -device virtio-net-pci,netdev=net0,mac=52:54:00:12:34:02 -netdev tap,id=net0,ifname=tap0,script=no,downscript=no \
+       -drive id=disk0,file=${DISK},if=none,format=raw -device virtio-blk-device,drive=disk0 -no-reboot -show-cursor \
+       -device virtio-rng-pci -monitor null -nographic \
+       -d unimp -semihosting-config enable,target=native -bios bl1.bin -dtb ledge-qemuarm.dtb \
+       -drive id=disk1,file=ledge-kernel-uefi-certs.ext4.img,if=none,format=raw -device virtio-blk-device,drive=disk1 \
+       -machine virt,secure=on -cpu cortex-a15 -m 1024  -device virtio-serial-device \
+       -chardev null,id=virtcon -device virtconsole,chardev=virtcon 
 
 armv8 (qemu_arm64)
 ------------------
