@@ -16,13 +16,15 @@ Guiding Principles
 ==================
 
 This documetation describes how to build fully open source version of LEDGE 
-reference platfrom and run it. TBD....
+reference platfrom and run it.
 
 Scope
 =====
 
 LEDGE refernece platfrom is intended for IoT and EDGE devices. So that support
-of hight level of security takes major place. TBD...
+of hight level of security takes major place. Document only describes hight level
+of features usage and impmenetation details. This document does not provide full
+technical documentation about specific features.
 
 Cross References
 ================
