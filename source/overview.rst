@@ -26,4 +26,38 @@ The LEDGE image consist of WIC image and firmware to boot this image on specific
 WIC image
 =========
 
-TBD
+LEDGE WIC image for consists of 2 partiotions - ESP partition and linux rootfs partition. Disk image may have
+gpt lable type or may not, depends on varios hardware requirements.
+
+.. code-block:: bash
+
+	Units: sectors of 1 * 512 = 512 bytes
+	Sector size (logical/physical): 512 bytes / 512 bytes
+	I/O size (minimum/optimal): 512 bytes / 512 bytes
+	Disklabel type: gpt
+	Disk identifier: 5B707C60-D281-441C-A31C-73849DD89C49
+
+	Device        Start     End Sectors   Size Type
+	/dev/loop6p1     40  123319  123280  60.2M Microsoft basic data
+	/dev/loop6p2 123320 1861731 1738412 848.9M Linux filesystem
+
+ESP partition
+-------------
+
+ESP partition is about 60 Megabytes vfat partiontion wit the following structure:
+
+.. code-block:: bash
+
+	├── dtb
+	├── EFI
+	│   └── BOOT
+	│       └── bootarm.efi
+	└── ledge-initramfs.rootfs.cpio.gz
+
+Where:
+
+  - dtb - directory which contains all dtbs for all supported devices.
+
+  - bootarm.efi - linux kernel compiled as UEFI stab and which boots directly from firmware. (bootx64.efi for x86, bootaarch.efi)
+
+  - ledge-initramfs.rootfs.cpio.gz - initramfs is used to do initial initialization and find and mount rootfs.
