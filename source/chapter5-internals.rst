@@ -9,20 +9,19 @@ This chapter discusses specific features for LEDGE RP.
 Applications
 ============
 
-ledge-iot image package set is aligment with Fedora IoT package set. List of the packages can be found in bitbake recepie ( https://github.com/Linaro/meta-ledge/blob/zeus/meta-ledge-sw/recipes-samples/packagegroups/packagegroup-ledge-iot.bb ).
+ledge-iot image package set is alignment with Fedora IoT package set. List of the packages can be found in bitbake recipe ( https://github.com/Linaro/meta-ledge/blob/zeus/meta-ledge-sw/recipes-samples/packagegroups/packagegroup-ledge-iot.bb ).
 
 ledge-gateway image includes minimal console image with Ostree and Docker updates support. ( https://github.com/Linaro/meta-ledge/blob/zeus/meta-ledge-sw/recipes-samples/images/ledge-gateway.bb )
 
 U-Boot hardening
 ================
 
-Security is very important on EDGE nodes. Hardening and protecting the bootloader is the first step towards a secure system. U-boot command line is disabled and kernel boot parameters are preset in LEDGE image.
+Security is very important on EDGE nodes. Hardening and protecting the bootloader is the first step towards a secure system. U-boot command line is disabled and kernel boot parameters are present in LEDGE image.
 
 QEMU with TF-A and OP-TEE
 =========================
 
-
-Ledge image support only qemu versions from 4.1 and above. To load TF-A and OP-TEE with qemu you need to place files at the run directory and name them as bl1.bin, bl2.bin and etc:
+Ledge image support only qemu versions from 4.1 and above. To load TF-A and OP-TEE with qemu you need to place files in the run directory and name them as bl1.bin, bl2.bin etc:
 
 .. code-block:: bash
 

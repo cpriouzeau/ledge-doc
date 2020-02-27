@@ -4,7 +4,7 @@
 OpenEmbedded
 ************
 
-This chapter discusses specific OpenEmbedded LEDGE build and run.
+This chapter describes specific OpenEmbedded LEDGE build and run.
 
 Supported platfroms
 ===================
@@ -329,10 +329,10 @@ x86_64
       -drive if=pflash,format=raw,file=${OVMF} \
       -m 4096 -serial mon:stdio -show-cursor -object rng-random,filename=/dev/urandom,id=rng0 -device virtio-rng-pci,rng=rng0
 
-Prebuild binaries
+Pre built binaries
 =================
 
-Prebuild binaries can be downloaded with the following link:
+Pre built binaries can be downloaded with the following link:
 http://snapshots.linaro.org/components/ledge/oe/
 (Linaro account is required).
 

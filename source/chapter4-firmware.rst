@@ -4,4 +4,4 @@
 Firmware
 *********
 
-This chapter discusses specific firmware generation for LEDGE RP.
+This chapter describes specific firmware generation for LEDGE RP.

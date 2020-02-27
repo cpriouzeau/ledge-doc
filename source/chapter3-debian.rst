@@ -4,4 +4,4 @@
 Debian
 ******
 
-This chapter discusses specific Debian LEDGE build and run.
+This chapter describes specific Debian LEDGE build and run.

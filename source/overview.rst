@@ -40,11 +40,38 @@ gpt lable type or may not, depends on varios hardware requirements.
 	Device        Start     End Sectors   Size Type
 	/dev/loop6p1     40  123319  123280  60.2M Microsoft basic data
 	/dev/loop6p2 123320 1861731 1738412 848.9M Linux filesystem
+Guiding Principles
+==================
+
+This documentation describes how to build fully open source version of LEDGE 
+reference platform and run it.
+
+Scope
+=====
+
+LEDGE reference platform is intended for IoT and EDGE devices. So that support
+of high level of security takes major place. Document only describes high level
+of features usage and implementation details. This document does not provide full
+technical documentation about specific features.
+
+Cross References
+================
+This document cross-references sources that are listed in the References
+section by using the section sign §.
+
+Examples:
+
+UEFI § 6.1 - Reference to the UEFI specification [UEFI]_ section 6.1
+
+Terms and abbreviations
+=======================
+
+This document uses the following terms and abbreviations.
 
 ESP partition
 -------------
 
-ESP partition is about 60 Megabytes vfat partiontion wit the following structure:
+ESP partition is about 60 Megabytes vfat partition wit the following structure:
 
 .. code-block:: bash
 

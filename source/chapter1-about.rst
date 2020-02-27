@@ -8,22 +8,22 @@ Introduction
 ============
 
 The LEDGE documentation describes instructions to build, install
-and use varios features included in LEDGE linux reference platfrom. 
+and use various features included in LEDGE linux reference platform.
 
 Comments or change requests can be sent to team-ledge@linaro.org.
 
 Guiding Principles
 ==================
 
-This documetation describes how to build fully open source version of LEDGE 
-reference platfrom and run it.
+This documentation describes how to build fully open source version of LEDGE 
+reference platform and run it.
 
 Scope
 =====
 
-LEDGE refernece platfrom is intended for IoT and EDGE devices. So that support
-of hight level of security takes major place. Document only describes hight level
-of features usage and impmenetation details. This document does not provide full
+LEDGE reference platform is intended for IoT and EDGE devices. So that support
+of high level of security takes major place. Document only describes high level
+of features usage and implementation details. This document does not provide full
 technical documentation about specific features.
 
 Cross References
