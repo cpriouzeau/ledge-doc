@@ -1,0 +1,672 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LEDGE reference platfrom documentation unknown-rev documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="linaro-edge-ledge-reference-platfrom-documentation">
+<h1>Linaro EDGE (LEDGE) reference platfrom documentation<a class="headerlink" href="#linaro-edge-ledge-reference-platfrom-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Copyright © 2020 Linaro Limited and Contributors.</p>
+<p>This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+International License. To view a copy of this license, visit
+<a class="reference external" href="http://creativecommons.org/licenses/by-sa/4.0/">http://creativecommons.org/licenses/by-sa/4.0/</a> or send a letter to
+Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.</p>
+<a class="reference external image-reference" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" class="align-right" src="_images/cc-by-sa-4.0-88x31.png" /></a>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Revision History</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="13%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Date</th>
+<th class="head">Issue</th>
+<th class="head">Changes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>17 Febrary 2020</td>
+<td>0.1</td>
+<td><ul class="first last simple">
+<li>Initial version</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+<span id="document-chapter1-about"></span><div class="section" id="about-this-document">
+<h2>1. About This Document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>The LEDGE documentation describes instructions to build, install
+and use various features included in LEDGE linux reference platform.</p>
+<p>Comments or change requests can be sent to <a class="reference external" href="mailto:team-ledge&#37;&#52;&#48;linaro&#46;org">team-ledge<span>&#64;</span>linaro<span>&#46;</span>org</a>.</p>
+</div>
+<div class="section" id="guiding-principles">
+<h3>1.2. Guiding Principles<a class="headerlink" href="#guiding-principles" title="Permalink to this headline">¶</a></h3>
+<p>This documentation describes how to build fully open source version of LEDGE
+reference platform and run it.</p>
+</div>
+<div class="section" id="scope">
+<h3>1.3. Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h3>
+<p>LEDGE reference platform is intended for IoT and EDGE devices. So that support
+of high level of security takes major place. Document only describes high level
+of features usage and implementation details. This document does not provide full
+technical documentation about specific features.</p>
+</div>
+<div class="section" id="cross-references">
+<h3>1.4. Cross References<a class="headerlink" href="#cross-references" title="Permalink to this headline">¶</a></h3>
+<p>This document cross-references sources that are listed in the References
+section by using the section sign §.</p>
+<p>Examples:</p>
+<p>UEFI § 6.1 - Reference to the UEFI specification <a class="reference internal" href="index.html#uefi" id="id1">[UEFI]</a> section 6.1</p>
+</div>
+<div class="section" id="terms-and-abbreviations">
+<h3>1.5. Terms and abbreviations<a class="headerlink" href="#terms-and-abbreviations" title="Permalink to this headline">¶</a></h3>
+<p>This document uses the following terms and abbreviations.</p>
+<dl class="glossary docutils">
+<dt id="term-a64">A64</dt>
+<dd>The 64-bit Arm instruction set used in AArch64 state.
+All A64 instructions are 32 bits.</dd>
+<dt id="term-aarch32">AArch32</dt>
+<dd>Arm 32-bit architectures. AArch32 is a roll up term referring to all
+32-bit versions of the Arm architecture starting at ARMv4.</dd>
+<dt id="term-aarch64-state">AArch64 state</dt>
+<dd>The Arm 64-bit Execution state that uses 64-bit general purpose
+registers, and a 64-bit program counter (PC), Stack Pointer (SP), and
+exception link registers (ELR).</dd>
+<dt id="term-aarch64">AArch64</dt>
+<dd>Execution state provides a single instruction set, A64.</dd>
+<dt id="term-efi-loaded-image">EFI Loaded Image</dt>
+<dd>An executable image to be run under the UEFI environment,
+and which uses boot time services.</dd>
+<dt id="term-el0">EL0</dt>
+<dd>The lowest Exception level on AArch64. The Exception level that is used to execute
+user applications, in Non-secure state.</dd>
+<dt id="term-el1">EL1</dt>
+<dd>Privileged Exception level on AArch64. The Exception level that is used to execute
+Operating Systems, in Non-secure state.</dd>
+<dt id="term-el2">EL2</dt>
+<dd>Hypervisor Exception level on AArch64. The Exception level that is used to execute
+hypervisor code. EL2 is always in Non-secure state.</dd>
+<dt id="term-el3">EL3</dt>
+<dd>Secure Monitor Exception level on AArch64. The Exception level that is used to
+execute Secure Monitor code, which handles the transitions between
+Non-secure and Secure states.  EL3 is always in Secure state.</dd>
+<dt id="term-logical-unit-lu">Logical Unit (LU)</dt>
+<dd>A logical unit (LU) is an externally addressable, independent entity
+within a device. In the context of storage, a single device may use
+logical units to provide multiple independent storage areas.</dd>
+<dt id="term-oem">OEM</dt>
+<dd>Original Equipment Manufacturer. In this document, the final device
+manufacturer.</dd>
+<dt id="term-sip">SiP</dt>
+<dd>Silicon Partner. In this document, the silicon manufacturer.</dd>
+<dt id="term-uefi">UEFI</dt>
+<dd>Unified Extensible Firmware Interface.</dd>
+<dt id="term-uefi-boot-services">UEFI Boot Services</dt>
+<dd>Functionality that is provided to UEFI Loaded Images during the UEFI boot
+process.</dd>
+<dt id="term-uefi-runtime-services">UEFI Runtime Services</dt>
+<dd>Functionality that is provided to an Operating System after the
+ExitBootServices() call.</dd>
+</dl>
+</div>
+</div>
+<span id="document-overview"></span><div class="section" id="ledge-overview">
+<h2>2. LEDGE Overview<a class="headerlink" href="#ledge-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general">
+<h3>2.1. General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<p>LEDGE images are related to IoT and EDGE devices. It has advanced security features supported:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Secure UEFI boot</li>
+<li>OP-TEE (Open Portable Trusted Execution Environment)</li>
+<li>ARM trusted Firmware (AT-F)</li>
+<li>Teanocore edk2 firmware or Uboot with UEFI mode support</li>
+<li>fTMP (Firmware TPM driver with backend to OP-TEE)</li>
+<li>Kernel image sign with certificate</li>
+<li>Kernel modules sign</li>
+<li>IMA/EVM for integrity user applications</li>
+<li>Selinux</li>
+<li>Containered isolation (docker)</li>
+<li>Advanced system update</li>
+</ul>
+</div></blockquote>
+<p>The LEDGE image consist of WIC image and firmware to boot this image on specific board or virtual machine.</p>
+</div>
+<div class="section" id="wic-image">
+<h3>2.2. WIC image<a class="headerlink" href="#wic-image" title="Permalink to this headline">¶</a></h3>
+<p>LEDGE WIC image for consists of 2 partiotions - ESP partition and linux rootfs partition. Disk image may have
+gpt lable type or may not, depends on varios hardware requirements.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Units: sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disklabel type: gpt
+Disk identifier: 5B707C60-D281-441C-A31C-73849DD89C49
+
+Device        Start     End Sectors   Size Type
+/dev/loop6p1     <span class="m">40</span>  <span class="m">123319</span>  <span class="m">123280</span>  <span class="m">60</span>.2M Microsoft basic data
+/dev/loop6p2 <span class="m">123320</span> <span class="m">1861731</span> <span class="m">1738412</span> <span class="m">848</span>.9M Linux filesystem
+</pre></div>
+</div>
+</div>
+<div class="section" id="guiding-principles">
+<h3>2.3. Guiding Principles<a class="headerlink" href="#guiding-principles" title="Permalink to this headline">¶</a></h3>
+<p>This documentation describes how to build fully open source version of LEDGE
+reference platform and run it.</p>
+</div>
+<div class="section" id="scope">
+<h3>2.4. Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h3>
+<p>LEDGE reference platform is intended for IoT and EDGE devices. So that support
+of high level of security takes major place. Document only describes high level
+of features usage and implementation details. This document does not provide full
+technical documentation about specific features.</p>
+</div>
+<div class="section" id="cross-references">
+<h3>2.5. Cross References<a class="headerlink" href="#cross-references" title="Permalink to this headline">¶</a></h3>
+<p>This document cross-references sources that are listed in the References
+section by using the section sign §.</p>
+<p>Examples:</p>
+<p>UEFI § 6.1 - Reference to the UEFI specification <a class="reference internal" href="index.html#uefi" id="id1">[UEFI]</a> section 6.1</p>
+</div>
+<div class="section" id="terms-and-abbreviations">
+<h3>2.6. Terms and abbreviations<a class="headerlink" href="#terms-and-abbreviations" title="Permalink to this headline">¶</a></h3>
+<p>This document uses the following terms and abbreviations.</p>
+<div class="section" id="esp-partition">
+<h4>2.6.1. ESP partition<a class="headerlink" href="#esp-partition" title="Permalink to this headline">¶</a></h4>
+<p>ESP partition is about 60 Megabytes vfat partition wit the following structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>├── dtb
+├── EFI
+│   └── BOOT
+│       └── bootarm.efi
+└── ledge-initramfs.rootfs.cpio.gz
+</pre></div>
+</div>
+<p>Where:</p>
+<blockquote>
+<div><ul class="simple">
+<li>dtb - directory which contains all dtbs for all supported devices.</li>
+<li>bootarm.efi - linux kernel compiled as UEFI stab and which boots directly from firmware. (bootx64.efi for x86, bootaarch.efi)</li>
+<li>ledge-initramfs.rootfs.cpio.gz - initramfs is used to do initial initialization and find and mount rootfs.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<span id="document-chapter2-oe"></span><div class="section" id="openembedded">
+<h2>3. OpenEmbedded<a class="headerlink" href="#openembedded" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes specific OpenEmbedded LEDGE build and run.</p>
+<div class="section" id="supported-platfroms">
+<h3>3.1. Supported platfroms<a class="headerlink" href="#supported-platfroms" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>armv7/ledge-multi-armv7 (qemu, ti-am572x, stm32mp157c-dk2);</li>
+<li>armv8/ledge-multi-armv7 (qemu, synquacer)</li>
+<li>x86-64 (qemu)</li>
+</ul>
+</div>
+<div class="section" id="build-steps">
+<h3>3.2. Build steps<a class="headerlink" href="#build-steps" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="download-sources">
+<h4>3.2.1. Download sources:<a class="headerlink" href="#download-sources" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>repo init --no-clone-bundle --depth<span class="o">=</span><span class="m">1</span> --no-tags -u https://github.com/Linaro/ledge-oe-manifest.git -b master
+repo sync
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-environment-and-run-build">
+<h4>3.2.2. Setup environment and run build:<a class="headerlink" href="#setup-environment-and-run-build" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="armv7-family">
+<h4>3.2.3. armv7 family:<a class="headerlink" href="#armv7-family" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>ledge-multi-armv7 <span class="nv">DISTRO</span><span class="o">=</span>rpb <span class="nb">source</span> ./setup-environment build-rpb
+bitbake mc:qemuarm:ledge-iot mc:qemuarm:ledge-gateway <span class="si">${</span><span class="nv">FIRMWARE</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Image files will apper under: armhf-glibc/deploy/images directory.</p>
+<p>Generated output will be:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>├── ledge-qemuarm
+│   ├── arm-trusted-firmware
+│   │   ├── bl1.bin
+│   │   ├── bl1.elf
+│   │   ├── bl2.bin
+│   │   └── bl2.elf
+│   ├── bl1.bin -&gt; arm-trusted-firmware/bl1.bin
+│   ├── bl2.bin -&gt; arm-trusted-firmware/bl2.bin
+│   ├── bl32.bin -&gt; optee/tee-header_v2.bin
+│   ├── bl32_extra1.bin -&gt; optee/tee-pager_v2.bin
+│   ├── bl32_extra2.bin -&gt; optee/tee-pageable_v2.bin
+│   ├── bl33.bin -&gt; u-boot-ledge-qemuarm.bin
+│   ├── dtb
+│   ├── kernel-devicetrees.tgz
+│   ├── ledge-gateway.env
+│   ├── ledge-gateway-ledge-kernel-uefi.wks
+│   ├── ledge-gateway-ledge-qemuarm-20200218104425.bootfs.vfat
+│   ├── ledge-gateway-ledge-qemuarm-20200218104425.bootfs.vfat.gz
+│   ├── ledge-gateway-ledge-qemuarm-20200218104425.qemuboot.conf
+│   ├── ledge-gateway-ledge-qemuarm-20200218104425.rootfs.manifest
+│   ├── ledge-gateway-ledge-qemuarm-20200218104425.rootfs.wic
+│   ├── ledge-gateway-ledge-qemuarm-20200218104425.testdata.json
+│   ├── ledge-gateway-ledge-qemuarm.bootfs.vfat -&gt; ledge-gateway-ledge-qemuarm-20200218104425.bootfs.vfat
+│   ├── ledge-gateway-ledge-qemuarm.bootfs.vfat.gz
+│   ├── ledge-gateway-ledge-qemuarm.manifest -&gt; ledge-gateway-ledge-qemuarm-20200218104425.rootfs.manifest
+│   ├── ledge-gateway-ledge-qemuarm.qemuboot.conf -&gt; ledge-gateway-ledge-qemuarm-20200218104425.qemuboot.conf
+│   ├── ledge-gateway-ledge-qemuarm.testdata.json -&gt; ledge-gateway-ledge-qemuarm-20200218104425.testdata.json
+│   ├── ledge-gateway-ledge-qemuarm.wic -&gt; ledge-gateway-ledge-qemuarm-20200218104425.rootfs.wic
+│   ├── ledge-initramfs-ledge-qemuarm.cpio.gz -&gt; ledge-initramfs.rootfs.cpio.gz
+│   ├── ledge-initramfs-ledge-qemuarm.manifest -&gt; ledge-initramfs.rootfs.manifest
+│   ├── ledge-initramfs-ledge-qemuarm.qemuboot.conf -&gt; ledge-initramfs.qemuboot.conf
+│   ├── ledge-initramfs-ledge-qemuarm.testdata.json -&gt; ledge-initramfs.testdata.json
+│   ├── ledge-initramfs.qemuboot.conf
+│   ├── ledge-initramfs.rootfs.cpio.gz
+│   ├── ledge-initramfs.rootfs.manifest
+│   ├── ledge-initramfs.testdata.json
+│   ├── ledge-iot.env
+│   ├── ledge-iot-ledge-kernel-uefi.wks
+│   ├── ledge-iot-ledge-qemuarm-20200218104425.bootfs.vfat
+│   ├── ledge-iot-ledge-qemuarm-20200218104425.bootfs.vfat.gz
+│   ├── ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf
+│   ├── ledge-iot-ledge-qemuarm-20200218104425.rootfs.manifest
+│   ├── ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic
+│   ├── ledge-iot-ledge-qemuarm-20200218104425.testdata.json
+│   ├── ledge-iot-ledge-qemuarm.bootfs.vfat -&gt; ledge-iot-ledge-qemuarm-20200218104425.bootfs.vfat
+│   ├── ledge-iot-ledge-qemuarm.bootfs.vfat.gz
+│   ├── ledge-iot-ledge-qemuarm.manifest -&gt; ledge-iot-ledge-qemuarm-20200218104425.rootfs.manifest
+│   ├── ledge-iot-ledge-qemuarm.qemuboot.conf -&gt; ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf
+│   ├── ledge-iot-ledge-qemuarm.testdata.json -&gt; ledge-iot-ledge-qemuarm-20200218104425.testdata.json
+│   ├── ledge-iot-ledge-qemuarm.wic -&gt; ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic
+│   ├── ledge-kernel-uefi-certs.ext4.img
+│   ├── ledge-qemuarm.dtb
+│   ├── modules-ledge-qemuarm.tgz -&gt; modules--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+│   ├── modules--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+│   ├── modules-stripped-ledge-qemuarm-for-debian.tgz
+│   ├── modules-stripped-ledge-qemuarm.tgz -&gt; modules-stripped--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+│   ├── modules-stripped--mainline-5.3-r0-ledge-qemuarm-20200218104425.tgz
+│   ├── optee
+│   │   ├── tee.bin
+│   │   ├── tee-header_v2.bin
+│   │   ├── tee-pageable.bin
+│   │   ├── tee-pageable_v2.bin
+│   │   ├── tee-pager.bin
+│   │   └── tee-pager_v2.bin
+│   ├── u-boot-basic-1.0-r0.bin
+│   ├── u-boot.bin -&gt; u-boot-basic-1.0-r0.bin
+│   ├── u-boot.bin-basic -&gt; u-boot-basic-1.0-r0.bin
+│   ├── u-boot-ledge-qemuarm.bin -&gt; u-boot-basic-1.0-r0.bin
+│   ├── u-boot-ledge-qemuarm.bin-basic -&gt; u-boot-basic-1.0-r0.bin
+│   ├── zImage -&gt; zImage--mainline-5.3-r0-ledge-qemuarm-20200218104425.bin
+│   ├── zImage-for-debian
+│   ├── zImage-ledge-qemuarm.bin -&gt; zImage--mainline-5.3-r0-ledge-qemuarm-20200218104425.bin
+│   └── zImage--mainline-5.3-r0-ledge-qemuarm-20200218104425.bin
+├── ledge-stm32mp157c-dk2
+│   ├── arm-trusted-firmware
+│   │   ├── bl2.bin
+│   │   ├── bl2.elf
+│   │   └── tf-a-stm32mp157c-dk2.stm32
+│   ├── optee
+│   │   ├── tee.bin
+│   │   ├── tee-header_v2.bin
+│   │   ├── tee-header_v2.stm32
+│   │   ├── tee-pageable.bin
+│   │   ├── tee-pageable_v2.bin
+│   │   ├── tee-pageable_v2.stm32
+│   │   ├── tee-pager.bin
+│   │   ├── tee-pager_v2.bin
+│   │   └── tee-pager_v2.stm32
+│   ├── spl
+│   │   └── u-boot-spl.stm32-basic
+│   ├── u-boot-basic.img
+│   └── u-boot-trusted.stm32
+└── ledge-ti-am572x
+    ├── MLO -&gt; MLO-ledge-ti-am572x-1.0-r0
+    ├── MLO-ledge-ti-am572x -&gt; MLO-ledge-ti-am572x-1.0-r0
+    ├── MLO-ledge-ti-am572x-1.0-r0
+    ├── optee
+    │   ├── tee.bin
+    │   ├── tee-header_v2.bin
+    │   ├── tee-pageable.bin
+    │   ├── tee-pageable_v2.bin
+    │   ├── tee-pager.bin
+    │   └── tee-pager_v2.bin
+    ├── u-boot.img -&gt; u-boot-ledge-ti-am572x-1.0-r0.img
+    ├── u-boot-ledge-ti-am572x-1.0-r0.img
+    └── u-boot-ledge-ti-am572x.img -&gt; u-boot-ledge-ti-am572x-1.0-r0.img
+</pre></div>
+</div>
+</div>
+<div class="section" id="armv8-family">
+<h4>3.2.4. armv8 family:<a class="headerlink" href="#armv8-family" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>ledge-multi-armv8 <span class="nv">DISTRO</span><span class="o">=</span>rpb <span class="nb">source</span> ./setup-environment build-rpb
+bitbake mc:qemuarm64:ledge-iot mc:qemuarm64:ledge-gateway <span class="si">${</span><span class="nv">FIRMWARE</span><span class="si">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x86-64">
+<h4>3.2.5. x86_64:<a class="headerlink" href="#x86-64" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>ledge-qemux86-64 <span class="nv">DISTRO</span><span class="o">=</span>rpb <span class="nb">source</span> ./setup-environment build-rpb
+bitbake ledge-iot ledge-gateway
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-and-boot-procedure">
+<h3>3.3. Install and boot procedure<a class="headerlink" href="#install-and-boot-procedure" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>DISK=”buildid-rootfs.wic”  - WIC image generated on build procedure. Like ledge-gateway-ledge-qemuarm64-20200216225638.rootfs.wic.</li>
+<li>OVMF=”QEMU_EFI.fd” - OVMF is an EDK II based project to enable UEFI support for Virtual Machines. OVMF contains sample UEFI firmware for QEMU and KVM.</li>
+</ul>
+<p>OVMF firmware for different architectures can be downloaded from here: <a class="reference external" href="https://storage.kernelci.org/images/uefi/111bbcf87621/">https://storage.kernelci.org/images/uefi/111bbcf87621/</a></p>
+<p>OE maintains script called ‘runqemu’. This script automatically added to the path after source ./setup-environment is done. This script can be used to run
+qemu virtual machine with all required parameters to boot from image and run networking. Configuration file ledge-iot-ledge-qemuarm-<a href="#id1"><span class="problematic" id="id2">*</span></a>.qemuboot.conf is
+generated during the build process.</p>
+<p>Usage example usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>runqemu ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf wic serial
+</pre></div>
+</div>
+<p>Example boot log:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>maxim.uvarov@hackbox2:~/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm$ runqemu ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf wic serial
+runqemu - INFO - Running <span class="nv">MACHINE</span><span class="o">=</span>ledge-qemuarm bitbake -e...
+runqemu - INFO - Overriding conf file setting of STAGING_DIR_NATIVE to /home/maxim.uvarov/build-test-update/build-rpb-mc/tmp-rpb-glibc/work/armv7at2hf-vfp-linaro-linux-gnueabi/defaultpkgname/1.0-r0/recipe-sysroot-native from Bitbake environment
+runqemu - INFO - Continuing with the following parameters:
+
+MACHINE: <span class="o">[</span>ledge-qemuarm<span class="o">]</span>
+FSTYPE: <span class="o">[</span>wic<span class="o">]</span>
+ROOTFS: <span class="o">[</span>/home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm/ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic<span class="o">]</span>
+CONFFILE: <span class="o">[</span>/home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm/ledge-iot-ledge-qemuarm-20200218104425.qemuboot.conf<span class="o">]</span>
+
+runqemu - INFO - Setting up tap interface under sudo
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> maxim.uvarov:
+runqemu - INFO - Network configuration: <span class="m">192</span>.168.7.2::192.168.7.1:255.255.255.0
+runqemu - INFO - Using block virtio drive
+runqemu - INFO - Interrupt character is <span class="s1">&#39;^]&#39;</span>
+runqemu - INFO - Running sudo /home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin/qemu-system-arm -device virtio-net-pci,netdev<span class="o">=</span>net0,mac<span class="o">=</span><span class="m">52</span>:54:00:12:34:02 -netdev tap,id<span class="o">=</span>net0,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span>no -drive <span class="nv">id</span><span class="o">=</span>disk0,file<span class="o">=</span>/home/maxim.uvarov/build-test-update/build-rpb-mc/armhf-glibc/deploy/images/ledge-qemuarm/ledge-iot-ledge-qemuarm-20200218104425.rootfs.wic,if<span class="o">=</span>none,format<span class="o">=</span>raw -device virtio-blk-device,drive<span class="o">=</span>disk0 -no-reboot -show-cursor -device virtio-rng-pci -monitor null -nographic -d unimp -semihosting-config enable,target<span class="o">=</span>native -bios bl1.bin -dtb ledge-qemuarm.dtb -drive <span class="nv">id</span><span class="o">=</span>disk1,file<span class="o">=</span>ledge-kernel-uefi-certs.ext4.img,if<span class="o">=</span>none,format<span class="o">=</span>raw -device virtio-blk-device,drive<span class="o">=</span>disk1  -machine virt,secure<span class="o">=</span>on -cpu cortex-a15 -m <span class="m">1024</span>  -device virtio-serial-device -chardev null,id<span class="o">=</span>virtcon -device virtconsole,chardev<span class="o">=</span>virtcon
+
+NOTICE:  Booting Trusted Firmware
+NOTICE:  BL1: v2.2<span class="o">(</span>debug<span class="o">)</span>:v2.2-78-g76f25eb52
+NOTICE:  BL1: Built : <span class="m">08</span>:42:37, Feb <span class="m">10</span> <span class="m">2020</span>
+INFO:    BL1: RAM 0xe04e000 - 0xe056000
+WARNING: BL1: cortex_a15: CPU workaround <span class="k">for</span> <span class="m">816470</span> was missing!
+INFO:    BL1: cortex_a15: CPU workaround <span class="k">for</span> cve_2017_5715 was applied
+INFO:    BL1: Loading BL2
+WARNING: Firmware Image Package header check failed.
+INFO:    Loading image <span class="nv">id</span><span class="o">=</span><span class="m">1</span> at address 0xe01b000
+INFO:    Image <span class="nv">id</span><span class="o">=</span><span class="m">1</span> loaded: 0xe01b000 - 0xe0201c0
+NOTICE:  BL1: Booting BL2
+INFO:    Entry point <span class="nv">address</span> <span class="o">=</span> 0xe01b000
+INFO:    <span class="nv">SPSR</span> <span class="o">=</span> 0x1d3
+NOTICE:  BL2: v2.2<span class="o">(</span>debug<span class="o">)</span>:v2.2-78-g76f25eb52
+NOTICE:  BL2: Built : <span class="m">08</span>:42:37, Feb <span class="m">10</span> <span class="m">2020</span>
+INFO:    BL2: Doing platform setup
+INFO:    BL2: Loading image id <span class="m">4</span>
+WARNING: Firmware Image Package header check failed.
+INFO:    Loading image <span class="nv">id</span><span class="o">=</span><span class="m">4</span> at address 0xe100000
+INFO:    Image <span class="nv">id</span><span class="o">=</span><span class="m">4</span> loaded: 0xe100000 - 0xe10001c
+INFO:    OPTEE <span class="nv">ep</span><span class="o">=</span>0xe100000
+INFO:    OPTEE header info:
+INFO:          <span class="nv">magic</span><span class="o">=</span>0x4554504f
+INFO:          <span class="nv">version</span><span class="o">=</span>0x2
+INFO:          <span class="nv">arch</span><span class="o">=</span>0x0
+INFO:          <span class="nv">flags</span><span class="o">=</span>0x0
+INFO:          <span class="nv">nb_images</span><span class="o">=</span>0x1
+INFO:    BL2: Loading image id <span class="m">21</span>
+WARNING: Firmware Image Package header check failed.
+INFO:    Loading image <span class="nv">id</span><span class="o">=</span><span class="m">21</span> at address 0xe100000
+INFO:    Image <span class="nv">id</span><span class="o">=</span><span class="m">21</span> loaded: 0xe100000 - 0xe12e1f8
+INFO:    BL2: Skip loading image id <span class="m">22</span>
+INFO:    BL2: Loading image id <span class="m">5</span>
+WARNING: Firmware Image Package header check failed.
+INFO:    Loading image <span class="nv">id</span><span class="o">=</span><span class="m">5</span> at address 0x60000000
+INFO:    Image <span class="nv">id</span><span class="o">=</span><span class="m">5</span> loaded: 0x60000000 - 0x600976bc
+NOTICE:  BL1: Booting BL32
+INFO:    Entry point <span class="nv">address</span> <span class="o">=</span> 0xe100000
+INFO:    <span class="nv">SPSR</span> <span class="o">=</span> 0x1d3
+
+
+U-Boot <span class="m">2020</span>.01 <span class="o">(</span>Feb <span class="m">10</span> <span class="m">2020</span> - <span class="m">08</span>:42:58 +0000<span class="o">)</span>
+
+DRAM:  <span class="m">1</span> GiB
+WARNING: Caches not enabled
+Flash: <span class="m">64</span> MiB
+In:    pl011@9000000
+Out:   pl011@9000000
+Err:   pl011@9000000
+Net:   No ethernet found.
+Hit any key to stop autoboot:  <span class="m">0</span>
+ERROR: reserving fdt memory region failed <span class="o">(</span><span class="nv">addr</span><span class="o">=</span>7fe00000 <span class="nv">size</span><span class="o">=</span><span class="m">200000</span><span class="o">)</span>
+<span class="m">1313</span> bytes <span class="nb">read</span> in <span class="m">2</span> ms <span class="o">(</span><span class="m">640</span>.6 KiB/s<span class="o">)</span>
+Scanning disk virtio-blk#30...
+Scanning disk virtio-blk#31...
+** Unrecognized filesystem <span class="nb">type</span> **
+Found <span class="m">4</span> disks
+
+Warning: virtio-net#32 using MAC address from ROM
+ERROR: reserving fdt memory region failed <span class="o">(</span><span class="nv">addr</span><span class="o">=</span>7fe00000 <span class="nv">size</span><span class="o">=</span><span class="m">200000</span><span class="o">)</span>
+<span class="m">2299</span> bytes <span class="nb">read</span> in <span class="m">1</span> ms <span class="o">(</span><span class="m">2</span>.2 MiB/s<span class="o">)</span>
+ERROR: reserving fdt memory region failed <span class="o">(</span><span class="nv">addr</span><span class="o">=</span>7fe00000 <span class="nv">size</span><span class="o">=</span><span class="m">200000</span><span class="o">)</span>
+<span class="m">2299</span> bytes <span class="nb">read</span> in <span class="m">1</span> ms <span class="o">(</span><span class="m">2</span>.2 MiB/s<span class="o">)</span>
+Booting: kernel
+EFI stub: Booting Linux Kernel...
+EFI stub: UEFI Secure Boot is enabled.
+EFI stub: Using DTB from configuration table
+EFI stub: Exiting boot services and installing virtual address map...
+<span class="o">[</span>    <span class="m">0</span>.000000<span class="o">]</span> Booting Linux on physical CPU 0x0
+<span class="o">[</span>    <span class="m">0</span>.000000<span class="o">]</span> Linux version <span class="m">5</span>.3.6 <span class="o">(</span>oe-user@oe-host<span class="o">)</span> <span class="o">(</span>gcc version <span class="m">8</span>.2.1 <span class="m">20180802</span> <span class="o">(</span>Linaro GCC <span class="m">8</span>.2-2018.08~dev<span class="o">))</span> <span class="c1">#1 SMP Tue Feb 18 10:49:14 UTC 2020</span>
+<span class="o">[</span>    <span class="m">0</span>.000000<span class="o">]</span> CPU: ARMv7 Processor <span class="o">[</span>412fc0f1<span class="o">]</span> revision <span class="m">1</span> <span class="o">(</span>ARMv7<span class="o">)</span>, <span class="nv">cr</span><span class="o">=</span>30c5387d
+<span class="o">[</span>    <span class="m">0</span>.000000<span class="o">]</span> CPU: div instructions available: patching division code
+<span class="o">[</span>    <span class="m">0</span>.000000<span class="o">]</span> CPU: PIPT / VIPT nonaliasing data cache, PIPT instruction cache
+<span class="o">[</span>    <span class="m">0</span>.000000<span class="o">]</span> OF: fdt: Machine model: linux,dummy-virt
+<span class="o">[</span>    <span class="m">0</span>.000000<span class="o">]</span> OF: fdt: Ignoring memory block 0xe00000
+</pre></div>
+</div>
+<div class="section" id="armv7-qemu-arm">
+<h4>3.3.1. armv7 (qemu_arm)<a class="headerlink" href="#armv7-qemu-arm" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-system-arm  <span class="se">\</span>
+    -device virtio-net-pci,netdev<span class="o">=</span>net0,mac<span class="o">=</span><span class="m">52</span>:54:00:12:34:02 -netdev tap,id<span class="o">=</span>net0,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span>no <span class="se">\</span>
+    -drive <span class="nv">id</span><span class="o">=</span>disk0,file<span class="o">=</span><span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>,if<span class="o">=</span>none,format<span class="o">=</span>raw -device virtio-blk-device,drive<span class="o">=</span>disk0 -no-reboot -show-cursor <span class="se">\</span>
+    -device virtio-rng-pci -monitor null -nographic <span class="se">\</span>
+    -d unimp -semihosting-config enable,target<span class="o">=</span>native -bios bl1.bin -dtb ledge-qemuarm.dtb <span class="se">\</span>
+    -drive <span class="nv">id</span><span class="o">=</span>disk1,file<span class="o">=</span>ledge-kernel-uefi-certs.ext4.img,if<span class="o">=</span>none,format<span class="o">=</span>raw -device virtio-blk-device,drive<span class="o">=</span>disk1 <span class="se">\</span>
+    -machine virt,secure<span class="o">=</span>on -cpu cortex-a15 -m <span class="m">1024</span>  -device virtio-serial-device <span class="se">\</span>
+    -chardev null,id<span class="o">=</span>virtcon -device virtconsole,chardev<span class="o">=</span>virtcon
+</pre></div>
+</div>
+</div>
+<div class="section" id="armv8-qemu-arm64">
+<h4>3.3.2. armv8 (qemu_arm64)<a class="headerlink" href="#armv8-qemu-arm64" title="Permalink to this headline">¶</a></h4>
+<p>OVMF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-system-aarch64 <span class="se">\</span>
+   -cpu cortex-a57 -machine virt -nographic -net nic,model<span class="o">=</span>virtio,macaddr<span class="o">=</span>DE:AD:BE:EF:36:03 -net tap -m <span class="m">1024</span> -monitor none <span class="se">\</span>
+   -bios <span class="si">${</span><span class="nv">OVMF</span><span class="si">}</span> -drive <span class="nv">id</span><span class="o">=</span>disk0,file<span class="o">=</span><span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>,if<span class="o">=</span>none,format<span class="o">=</span>raw -device virtio-blk-device,drive<span class="o">=</span>disk0 -m <span class="m">4096</span> -smp <span class="m">4</span> -nographic
+</pre></div>
+</div>
+<p>UBOOT:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-system-aarch64 <span class="se">\</span>
+   -device virtio-net-pci,netdev<span class="o">=</span>net0,mac<span class="o">=</span><span class="m">52</span>:54:00:12:34:02 -netdev tap,id<span class="o">=</span>net0,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span>no <span class="se">\</span>
+   -drive <span class="nv">id</span><span class="o">=</span>disk0,file<span class="o">=</span><span class="si">${</span><span class="nv">ROOTFS</span><span class="si">}</span>,if<span class="o">=</span>none,format<span class="o">=</span>raw -device virtio-blk-device,drive<span class="o">=</span>disk0 -show-cursor <span class="se">\</span>
+   -device virtio-rng-pci -monitor null -nographic <span class="se">\</span>
+   -d unimp -semihosting-config enable,target<span class="o">=</span>native <span class="se">\</span>
+   -bios bl1.bin <span class="se">\</span>
+   -drive <span class="nv">id</span><span class="o">=</span>disk1,file<span class="o">=</span><span class="si">${</span><span class="nv">KEYS</span><span class="si">}</span>,if<span class="o">=</span>none,format<span class="o">=</span>raw <span class="se">\</span>
+   -device virtio-blk-device,drive<span class="o">=</span>disk1  -nographic -machine virt,secure<span class="o">=</span>on -cpu cortex-a57 -m <span class="m">4096</span> -serial mon:stdio -serial null <span class="se">\</span>
+   -no-reboot
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>3.3.3. x86_64<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-system-x86_64 <span class="se">\</span>
+   -cpu host -enable-kvm -nographic -net nic,model<span class="o">=</span>virtio,macaddr<span class="o">=</span>DE:AD:BE:EF:36:03 -net tap -m <span class="m">1024</span> -monitor none <span class="se">\</span>
+   -drive <span class="nv">file</span><span class="o">=</span><span class="si">${</span><span class="nv">DISK</span><span class="si">}</span>,id<span class="o">=</span>hd,format<span class="o">=</span>raw <span class="se">\</span>
+   -drive <span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>raw,file<span class="o">=</span><span class="si">${</span><span class="nv">OVMF</span><span class="si">}</span> <span class="se">\</span>
+   -m <span class="m">4096</span> -serial mon:stdio -show-cursor -object rng-random,filename<span class="o">=</span>/dev/urandom,id<span class="o">=</span>rng0 -device virtio-rng-pci,rng<span class="o">=</span>rng0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pre-built-binaries">
+<h3>3.4. Pre built binaries<a class="headerlink" href="#pre-built-binaries" title="Permalink to this headline">¶</a></h3>
+<p>Pre built binaries can be downloaded with the following link:
+<a class="reference external" href="http://snapshots.linaro.org/components/ledge/oe/">http://snapshots.linaro.org/components/ledge/oe/</a>
+(Linaro account is required).</p>
+<p>CI run task can be found here: <a class="reference external" href="https://ci.linaro.org/job/ledge-oe/">https://ci.linaro.org/job/ledge-oe/</a></p>
+</div>
+</div>
+<span id="document-chapter3-debian"></span><div class="section" id="debian">
+<h2>4. Debian<a class="headerlink" href="#debian" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes specific Debian LEDGE build and run.</p>
+</div>
+<span id="document-chapter4-firmware"></span><div class="section" id="firmware">
+<h2>5. Firmware<a class="headerlink" href="#firmware" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes specific firmware generation for LEDGE RP.</p>
+</div>
+<span id="document-chapter5-internals"></span><div class="section" id="ledge-internals">
+<h2>6. LEDGE Internals<a class="headerlink" href="#ledge-internals" title="Permalink to this headline">¶</a></h2>
+<p>This chapter discusses specific features for LEDGE RP.</p>
+<div class="section" id="applications">
+<h3>6.1. Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h3>
+<p>ledge-iot image package set is alignment with Fedora IoT package set. List of the packages can be found in bitbake recipe ( <a class="reference external" href="https://github.com/Linaro/meta-ledge/blob/zeus/meta-ledge-sw/recipes-samples/packagegroups/packagegroup-ledge-iot.bb">https://github.com/Linaro/meta-ledge/blob/zeus/meta-ledge-sw/recipes-samples/packagegroups/packagegroup-ledge-iot.bb</a> ).</p>
+<p>ledge-gateway image includes minimal console image with Ostree and Docker updates support. ( <a class="reference external" href="https://github.com/Linaro/meta-ledge/blob/zeus/meta-ledge-sw/recipes-samples/images/ledge-gateway.bb">https://github.com/Linaro/meta-ledge/blob/zeus/meta-ledge-sw/recipes-samples/images/ledge-gateway.bb</a> )</p>
+</div>
+<div class="section" id="u-boot-hardening">
+<h3>6.2. U-Boot hardening<a class="headerlink" href="#u-boot-hardening" title="Permalink to this headline">¶</a></h3>
+<p>Security is very important on EDGE nodes. Hardening and protecting the bootloader is the first step towards a secure system. U-boot command line is disabled and kernel boot parameters are present in LEDGE image.</p>
+</div>
+<div class="section" id="qemu-with-tf-a-and-op-tee">
+<h3>6.3. QEMU with TF-A and OP-TEE<a class="headerlink" href="#qemu-with-tf-a-and-op-tee" title="Permalink to this headline">¶</a></h3>
+<p>Ledge image support only qemu versions from 4.1 and above. To load TF-A and OP-TEE with qemu you need to place files in the run directory and name them as bl1.bin, bl2.bin etc:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>│   ├── bl1.bin -&gt; arm-trusted-firmware/bl1.bin
+│   ├── bl2.bin -&gt; arm-trusted-firmware/bl2.bin
+│   ├── bl32.bin -&gt; optee/tee-header_v2.bin
+│   ├── bl32_extra1.bin -&gt; optee/tee-pager_v2.bin
+│   ├── bl32_extra2.bin -&gt; optee/tee-pageable_v2.bin
+│   ├── bl33.bin -&gt; u-boot-ledge-qemuarm.bin
+</pre></div>
+</div>
+<p>Then -semihosting and -bios options are used to boot up qemu virtual machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-d unimp -semihosting-config enable,target<span class="o">=</span>native <span class="se">\</span>
+-bios bl1.bin
+</pre></div>
+</div>
+</div>
+<div class="section" id="qemu-with-firmware-tpm-ftmp-in-op-tee-tf-a-and-u-boot">
+<h3>6.4. QEMU with firmware TPM (fTMP) in OP-TEE, TF-A and U-Boot<a class="headerlink" href="#qemu-with-firmware-tpm-ftmp-in-op-tee-tf-a-and-u-boot" title="Permalink to this headline">¶</a></h3>
+<p>LEDGE patches default dtb for qemu with ftpm entry.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tpm@0 <span class="o">{</span>
+        <span class="nv">compatible</span> <span class="o">=</span> <span class="s2">&quot;microsoft,ftpm&quot;</span><span class="p">;</span>
+        linux,sml-base <span class="o">=</span> &lt;0x0 0xC0000000&gt;<span class="p">;</span>
+        linux,sml-size <span class="o">=</span> &lt;0x10000&gt;<span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Once qemu is run you might see that tmp_ftpm_tee module privides TEE supplicant storage.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ <span class="c1"># rmmod tpm_ftpm_tee &amp;&amp; modprobe tpm_ftpm_tee</span>
+~ <span class="c1"># tpm2_getrandom 256</span>
+<span class="o">[</span>  <span class="m">107</span>.057613<span class="o">]</span> audit: <span class="nv">type</span><span class="o">=</span><span class="m">1130</span> audit<span class="o">(</span><span class="m">1574348463</span>.038:33<span class="o">)</span>: <span class="nv">pid</span><span class="o">=</span><span class="m">1</span> <span class="nv">uid</span><span class="o">=</span><span class="m">0</span> <span class="nv">auid</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">ses</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">msg</span><span class="o">=</span><span class="s1">&#39;unit=tpm2-abrmd comm=&quot;systemd&quot; exe=&quot;/lib/systemd/systemd&quot; hostname=? addr=? terminal=? res=success&#39;</span>
+0xD0 0x31 0xA5 0xB9 0xF5 0xD1 0x5D 0x91 0x95 0x19 0x59 0x83 0x9F 0x7D 0x12 0x4F 0x8F 0xA2 0x8C 0xC2 0x10 0x71 0x09 0x84 0x6F 0x8B 0x1E 0xE6 0xD4 0xA9 0xA8 0xEB 0xB9 0xAB 0x39 0x92 0x66 0xCB 0x15 0x38 0x7C 0x3F 0x53 0x69 0x86 0xCC 0xA2 0x2A 0x33 0x6B 0x6D 0xFA 0x62 0xC3 0x70 0x93 0x9F 0x96 0xA8 0xFE 0xDA 0x4B 0x4F 0x15
+</pre></div>
+</div>
+</div>
+</div>
+<span id="document-references"></span><div class="section" id="references">
+<h2>7. References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils citation" frame="void" id="uefi" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[UEFI]</td><td><a class="reference external" href="http://www.uefi.org/sites/default/files/resources/UEFI%20Spec%202_7_A%20Sept%206.pdf">Unified Extensable Firmware Interface Specification v2.7A</a>,
+August 2017, <a class="reference external" href="http://www.uefi.org">UEFI Forum</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html#document-index">LEDGE reference platfrom documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-chapter1-about">1. About This Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-overview">2. LEDGE Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-chapter2-oe">3. OpenEmbedded</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-chapter3-debian">4. Debian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-chapter4-firmware">5. Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-chapter5-internals">6. LEDGE Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-references">7. References</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html#document-index">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020 Linaro Limited and Contributors.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
